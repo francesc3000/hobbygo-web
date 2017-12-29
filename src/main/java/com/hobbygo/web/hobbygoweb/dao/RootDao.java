@@ -21,7 +21,7 @@ import static com.hobbygo.web.hobbygoweb.dao.mapping.EventoMapping.MappingEvento
 
 @Repository
 public class RootDao {
-    private final String ROOTLINK = "http://localhost:8443/api/v1";
+    private final String ROOTLINK = "https://hobbygo-api.herokuapp.com/api/v1";
 
     @Autowired
     private RestTemplate restTemplate;

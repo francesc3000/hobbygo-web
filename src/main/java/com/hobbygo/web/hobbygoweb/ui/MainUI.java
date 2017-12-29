@@ -16,7 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Theme("valo")
 @SpringUI
 @SpringViewDisplay
-@Title("Eventos")
+@Title("HobbyGo!")
 public class MainUI extends UI {
     @Autowired
     ViewEventoList viewEventoList;
