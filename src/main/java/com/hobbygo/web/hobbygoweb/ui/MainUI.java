@@ -21,13 +21,15 @@ public class MainUI extends UI {
     @Autowired
     ViewEventoList viewEventoList;
 
+    private Geolocation geolocation;
+
     @Override
     protected void init(VaadinRequest request) {
         UI ui = getUI();
 
         VerticalLayout verticalLayout = new VerticalLayout();
 
-        final Geolocation geolocation = new Geolocation(this.getUI());
+        geolocation = new Geolocation(this);
         final Button currentPositionButton = new Button("Current position", VaadinIcons.MAP_MARKER);
         currentPositionButton.addClickListener(click -> {
             geolocation.getCurrentPosition(position -> {
