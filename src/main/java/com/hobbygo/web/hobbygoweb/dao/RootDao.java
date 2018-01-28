@@ -7,11 +7,10 @@ import com.hobbygo.web.hobbygoweb.model.Root;
 import com.hobbygo.web.hobbygoweb.model.list.Evento4List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
@@ -101,5 +100,16 @@ public class RootDao {
                 return link.getHref();
 
         return null;
+    }
+
+    public void googleConnect(){
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+        MultiValueMap<String, String> map= new LinkedMultiValueMap<String, String>();
+        map.add("scope", "profile");
+
+        HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
+
+        restTemplate.postForObject("https://hobbygo-api.herokuapp.com/connect/google",request, String.class);
     }
 }

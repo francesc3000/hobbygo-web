@@ -72,6 +72,7 @@ public class ViewEventoList extends VerticalLayout implements View {
     }
 */
     private void onRegisterClickListener(Button.ClickEvent clickEvent) {
+        /*
         final Window window = new Window("Window");
         window.setWidth(300.0f, Unit.PIXELS);
         window.center();
@@ -91,6 +92,8 @@ public class ViewEventoList extends VerticalLayout implements View {
         content.setMargin(true);
         window.setContent(content);
         getUI().addWindow(window);
+        */
+        rootService.googleConnect();
     }
 
     private void sendOnClickListener(Button.ClickEvent listener) {

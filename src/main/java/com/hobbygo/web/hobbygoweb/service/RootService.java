@@ -19,11 +19,15 @@ public class RootService {
 
     public List<Evento4List> getEventos() {
         //TODO: Recoger la ubicación
-        return rootDao.getEventos(40.1f, 24.1f,5000);
+        return rootDao.getEventos(40.1f, 24.1f,50000);
     }
 
     public int getCountEventos() {
         //TODO: Recoger la ubicación
         return rootDao.getCountEventos(40.1f, 24.1f,5000);
+    }
+
+    public void googleConnect() {
+        rootDao.googleConnect();
     }
 }
