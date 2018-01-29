@@ -21,6 +21,7 @@ import static com.hobbygo.web.hobbygoweb.dao.mapping.EventoMapping.MappingEvento
 @Repository
 public class RootDao {
     private final String ROOTLINK = "https://hobbygo-api.herokuapp.com/api/v1";
+    //private final String ROOTLINK = "http://localhost:8443/api/v1";
 
     @Autowired
     private RestTemplate restTemplate;
@@ -45,10 +46,16 @@ public class RootDao {
 
          String eventoLink = getEventoLink();
 
+        eventoLink = eventoLink.replaceFirst("lon=0.0", "lon="+longitude.toString());
+        eventoLink = eventoLink.replaceFirst("lat=0.0", "lat="+latitude.toString());
+        eventoLink = eventoLink.replaceFirst("dis=0", "dis="+distance.toString());
+
         HttpHeaders httpHeaders = new HttpHeaders();
+        /*
         httpHeaders.add("lon",longitude.toString());
         httpHeaders.add("lat",latitude.toString());
         httpHeaders.add("dis",distance.toString());
+        */
 
         HttpEntity<String> entity = new HttpEntity<>("parameters", httpHeaders);
 /*
@@ -73,12 +80,17 @@ public class RootDao {
     public Integer getCountEventos(Float longitude, Float latitude, Integer distance) {
         String eventoLink = getEventoCountLink();
 
+        eventoLink = eventoLink.replaceFirst("lon=0.0", "lon="+longitude.toString());
+        eventoLink = eventoLink.replaceFirst("lat=0.0", "lat="+latitude.toString());
+        eventoLink = eventoLink.replaceFirst("dis=0", "dis="+distance.toString());
+
         HttpHeaders httpHeaders = new HttpHeaders();
+        /*
         httpHeaders.add("lon",longitude.toString());
         httpHeaders.add("lat",latitude.toString());
         httpHeaders.add("dis",distance.toString());
-
-        HttpEntity<String> entity = new HttpEntity<>("parameters", httpHeaders);
+*/
+        HttpEntity<String> entity = new HttpEntity<>(httpHeaders);
 
         ResponseEntity<Integer> responseEntity =
                 restTemplate.exchange(eventoLink, HttpMethod.GET,entity,Integer.class);
@@ -111,5 +123,6 @@ public class RootDao {
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
 
         restTemplate.postForObject("https://hobbygo-api.herokuapp.com/connect/google",request, String.class);
+        //restTemplate.postForEntity("http://localhost:8443/connect/google",request, String.class);
     }
 }

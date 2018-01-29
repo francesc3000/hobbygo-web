@@ -72,13 +72,14 @@ public class ViewEventoList extends VerticalLayout implements View {
     }
 */
     private void onRegisterClickListener(Button.ClickEvent clickEvent) {
-        /*
+
         final Window window = new Window("Window");
         window.setWidth(300.0f, Unit.PIXELS);
         window.center();
         window.setCaption("Correo Electronico");
         window.setResizable(false);
         window.setDraggable(false);
+        /*
         final FormLayout content = new FormLayout();
         TextField email = new TextField();
         email.setDescription("Correo electronico");
@@ -91,8 +92,8 @@ public class ViewEventoList extends VerticalLayout implements View {
         content.addComponent(send);
         content.setMargin(true);
         window.setContent(content);
-        getUI().addWindow(window);
         */
+        getUI().addWindow(window);
         rootService.googleConnect();
     }
 
